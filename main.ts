@@ -6,7 +6,7 @@ import {
 	Notice,
 	Plugin,
 	PluginSettingTab,
-	Setting
+	Setting,
 } from "obsidian";
 
 // Remember to rename these classes and interfaces!
@@ -24,33 +24,50 @@ export default class DndSRC extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
-		let vault = this.app.vault;
+		const vault = this.app.vault;
 
-		let database = {
-			"Ability-Scores": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Ability-Scores.json",
-			"Alignments": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Alignments.json",
-			"Backgrounds": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Backgrounds.json",
-			"Classes": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Classes.json",
-			"Conditions": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Conditions.json",
-			"Damage-Types": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Damage-Types.json",
-			"Equipment-Categories": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Equipment-Categories.json",
-			"Equipment": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Equipment.json",
-			"Feats": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Feats.json",
-			"Languages": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Languages.json",
-			"Levels": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Levels.json",
-			"Magic-Items": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Magic-Items.json",
-			"Magic-Schools": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Magic-Schools.json",
-			"Monsters": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Monsters.json",
-			"Proficiencies": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Proficiencies.json",
-			"Races": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Races.json",
-			"Rule-Sections": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Rule-Sections.json",
-			"Rules": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Rules.json",
-			"Skills": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Skills.json",
-			"Spells": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Spells.json",
-			"Subclasses": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Subclasses.json",
-			"Subraces": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Subraces.json",
-			"Traits": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Traits.json",
-			"Weapon-Properties": "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Weapon-Properties.json"
+		const database = {
+			"Ability-Scores":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Ability-Scores.json",
+			Alignments:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Alignments.json",
+			Backgrounds:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Backgrounds.json",
+			Classes:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Classes.json",
+			Conditions:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Conditions.json",
+			"Damage-Types":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Damage-Types.json",
+			"Equipment-Categories":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Equipment-Categories.json",
+			Equipment:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Equipment.json",
+			Feats: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Feats.json",
+			Languages:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Languages.json",
+			Levels: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Levels.json",
+			"Magic-Items":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Magic-Items.json",
+			"Magic-Schools":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Magic-Schools.json",
+			Monsters:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Monsters.json",
+			Proficiencies:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Proficiencies.json",
+			Races: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Races.json",
+			"Rule-Sections":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Rule-Sections.json",
+			Rules: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Rules.json",
+			Skills: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Skills.json",
+			Spells: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Spells.json",
+			Subclasses:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Subclasses.json",
+			Subraces:
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Subraces.json",
+			Traits: "https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Traits.json",
+			"Weapon-Properties":
+				"https://raw.githubusercontent.com/5e-bits/5e-database/main/src/5e-SRD-Weapon-Properties.json",
 		};
 
 		async function fetchCategory(category: string) {
@@ -62,7 +79,7 @@ export default class DndSRC extends Plugin {
 				const data = await response.json();
 				return data;
 			} catch (error) {
-				console.error('Error fetching category:', error);
+				console.error("Error fetching category:", error);
 			}
 		}
 
@@ -74,23 +91,26 @@ export default class DndSRC extends Plugin {
 			vault.create(`${category}/${name}.md`, content);
 		}
 
-
 		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dices', 'Create D&D Manual', async (evt: MouseEvent) => {
-			try {
-				const category = await fetchCategory(database["Races"]);
-				console.log(category);
+		const ribbonIconEl = this.addRibbonIcon(
+			"dices",
+			"Create D&D Manual",
+			async (evt: MouseEvent) => {
+				try {
+					const category = await fetchCategory(database["Races"]);
+					console.log(category);
 
-				if (category.length > 0) {
-					const firstRaceName = category[0].name;
-					new Notice(`First Race Name: ${firstRaceName}`);
-					createCategory("Races");
-					createFile("Races", category[0].name, "test");
+					if (category.length > 0) {
+						const firstRaceName = category[0].name;
+						new Notice(`First Race Name: ${firstRaceName}`);
+						createCategory("Races");
+						createFile("Races", category[0].name, "test");
+					}
+				} catch (error) {
+					console.error("Error fetching categories:", error);
 				}
-			} catch (error) {
-				console.error('Error fetching categories:', error);
 			}
-		});
+		);
 
 		this.addRibbonIcon("dice", "Greet", () => {
 			new Notice("D&D Rules!");
@@ -153,7 +173,7 @@ export default class DndSRC extends Plugin {
 		);
 	}
 
-	onunload() { }
+	onunload() {}
 
 	async loadSettings() {
 		this.settings = Object.assign(
