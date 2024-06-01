@@ -1,0 +1,11 @@
+{
+	"id": "dnd-SRC",
+	"name": "D&D Source Content",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Get's all the default Rules from 5e Dungeons & Dragons Api.",
+	"author": "Dev-Meets",
+	"authorUrl": "https://obsidian.md",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
+}
