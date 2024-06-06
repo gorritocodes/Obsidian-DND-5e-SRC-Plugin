@@ -1,6 +1,6 @@
 {
-	"id": "dnd-SRC",
-	"name": "D&D Source Content",
+	"id": "DND-SRD",
+	"name": "D&D SRD 5e Content",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Get's all the default Rules from 5e Dungeons & Dragons Api.",

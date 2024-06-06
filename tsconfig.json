@@ -1,24 +1,39 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "module": "ESNext",
-    "target": "ES6",
-    "allowJs": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "isolatedModules": true,
-	"strictNullChecks": true,
-    "lib": [
-      "DOM",
-      "ES5",
-      "ES6",
-      "ES7"
-    ]
-  },
-  "include": [
-    "**/*.ts"
-  ]
+	"compilerOptions": {
+		//Type Checking options
+		"allowUnreachableCode": false, //raises complier errors about unreachable code, for this project I think false or undefined (with only provides warnings) are te ways to go.
+		"allowUnusedLabels": null,
+		"alwaysStrict": false, //Don't think Strict in every module is required, but can be useful
+		"exactOptionalPropertyTypes": true, //If too much problems arise this could be why, and should return to false.
+		"noImplicitAny": true, // This came Default with the plugin template
+		"noImplicitOverride": true, //This can prove to be useful especially working with class inheritance
+		"noImplicitReturns": false, //This Might be a weird personal opinion, but even when it can negatively impact readability I find them cool
+		"noImplicitThis": null,
+		"noPropertyAccessFromIndexSignature": null,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true, //This could trigger a lot of unnecessary errors
+		"strictNullChecks": true,
+		// Modules options
+		"allowImportingTsExtensions": null, //Check this in greater detail
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"outDir": "./build",
+		"rootDir": "src",
+		"inlineSourceMap": true,
+		"inlineSources": true,
+		"resolveJsonModule": true,
+		"baseUrl": ".",
+		"target": "ES6",
+		"esModuleInterop": true,
+		"allowJs": true,
+		"importHelpers": true,
+		"isolatedModules": true,
+		"allowSyntheticDefaultImports": true,
+		"noUncheckedIndexedAccess": true,
+		"skipLibCheck": true,
+		// "types": ["obsidian-typings"],
+		"lib": ["DOM", "ES5", "ES6", "ES7", "ESNext"]
+	},
+	"include": ["./**/*.ts"],
+	"exclude": ["node_modules"]
 }
